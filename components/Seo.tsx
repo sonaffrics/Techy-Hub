@@ -1,14 +1,6 @@
 import React, { useEffect } from 'react';
 import { DEFAULT_SEO, BASE_URL } from '../constants';
-
-interface SeoProps {
-  title?: string;
-  description?: string;
-  keywords?: string;
-  url?: string;
-  ogType?: string;
-  ogImage?: string;
-}
+import { SeoProps } from '../types'; // Import SeoProps from types.ts
 
 const Seo: React.FC<SeoProps> = ({ title, description, keywords, url, ogType, ogImage }) => {
   useEffect(() => {

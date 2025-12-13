@@ -67,16 +67,16 @@ const Button: React.FC<ButtonProps> = ({
     const isInternalLink = href.startsWith('/');
     if (isInternalLink) {
       return (
-        // Cast restProps to AnchorHTMLAttributes to satisfy Link's prop type checking
-        <Link to={href} className={combinedClassName} {...restProps as React.AnchorHTMLAttributes<HTMLAnchorElement>}>
+        // Fix: Cast restProps to unknown first to avoid direct incompatible type conversion errors
+        <Link to={href} className={combinedClassName} {...restProps as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>}>
           {children}
         </Link>
       );
     } else {
       // For external links (tel:, mailto:, http:, etc.)
-      // Cast restProps to AnchorHTMLAttributes to ensure type compatibility
+      // Fix: Cast restProps to unknown first to avoid direct incompatible type conversion errors
       return (
-        <a href={href} className={combinedClassName} {...restProps as React.AnchorHTMLAttributes<HTMLAnchorElement>}>
+        <a href={href} className={combinedClassName} {...restProps as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>}>
           {children}
         </a>
       );
